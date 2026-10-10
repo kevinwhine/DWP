@@ -1,11 +1,9 @@
 package uk.gov.dwp.engineering.recruitment.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static uk.gov.dwp.engineering.recruitment.domain.TicketType.ADULT;
-import static uk.gov.dwp.engineering.recruitment.domain.TicketType.CHILD;
-import static uk.gov.dwp.engineering.recruitment.domain.TicketType.INFANT;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static uk.gov.dwp.engineering.recruitment.domain.TicketType.*;
 
 class TicketRequestTest {
 

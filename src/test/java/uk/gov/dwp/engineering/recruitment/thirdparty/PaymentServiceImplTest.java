@@ -22,7 +22,7 @@ class PaymentServiceImplTest {
   @Test
   void givenPaymentRequest_thenOkIsReturned() {
     final ResponseEntity<String> responseEntity = paymentService.debitAccount(1L,
-        BigDecimal.valueOf(1.00));
+            BigDecimal.valueOf(1.00));
     assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
   }
 }

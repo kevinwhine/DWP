@@ -1,0 +1,249 @@
+{
+  "info": {
+    "_postman_id": "73e281b6-80a3-4325-b998-a4e9531c032b",
+    "name": "Cinema Tickets",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Valid - 1 Adult",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"tickets\": [\n    {\n      \"type\": \"ADULT\",\n      \"count\": 1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Valid - Maximum Boundary (15 Adults, 5 Children, 5 Infants)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 12345,\n  \"tickets\": [\n    {\n      \"type\": \"ADULT\",\n      \"count\": 15\n    },\n    {\n      \"type\": \"CHILD\",\n      \"count\": 5\n    },\n    {\n      \"type\": \"INFANT\",\n      \"count\": 5\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - Account Id",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 0,\n  \"tickets\": [\n    {\n      \"type\": \"ADULT\",\n      \"count\": 1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - Child Without Adult",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"tickets\": [\n    {\n      \"type\": \"CHILD\",\n      \"count\": 1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - Infant Without Adult",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"tickets\": [\n    {\n      \"type\": \"INFANT\",\n      \"count\": 1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - More Infants Than Adults",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 99,\n  \"tickets\": [\n    {\n      \"type\": \"ADULT\",\n      \"count\": 1\n    },\n    {\n      \"type\": \"INFANT\",\n      \"count\": 2\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - More Than 25 Tickets",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"tickets\": [\n    {\n      \"type\": \"ADULT\",\n      \"count\": 26\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - Negative Ticket Count",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"tickets\": [\n    {\n      \"type\": \"ADULT\",\n      \"count\": -1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid - Empty Body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cinema/bookings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cinema",
+            "bookings"
+          ]
+        }
+      }
+    }
+  ]
+}
